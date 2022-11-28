@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+<!--    tools:context=".MainActivity">-->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <!-- 图标 -->
+        <ImageView
+            android:id="@+id/img_folder"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginLeft="45dp"
+            android:src="@drawable/ic_baseline_folder_24"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+        <!-- 这里引用android自带的布局simple_list_item_1 -->
+
+        <TextView
+            android:id="@+id/tx_folder"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginStart="28dp"
+            android:padding="1dp"
+            android:text="文件夹名"
+            android:textSize="20dp"
+            app:layout_constraintBottom_toTopOf="@id/path_folder"
+            app:layout_constraintStart_toEndOf="@id/img_folder"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.533" />
+
+        <TextView
+            android:id="@+id/path_folder"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="2dp"
+            android:text="文件夹路径"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/img_folder"
+            app:layout_constraintTop_toBottomOf="@id/tx_folder"
+            />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</LinearLayout>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<resources>
+    <string name="app_name">ImageViewer</string>
+    <string name="nav_header_desc">Navigation header</string>
+
+    <string name="menu_spider">Spider</string>
+    <string name="menu_gallery">Gallery</string>
+    <string name="menu_home">Home</string>
+    <string name="title_activity_folder">folderActivity</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Swipe Right For more</string>
+    <string name="action_settings">Settings</string>
+    <string name="btn_spider">Spider</string>
+</resources>
