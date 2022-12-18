@@ -7,7 +7,7 @@
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:showIn="@layout/app_bar_main">
 
-    <!--   android:name 需要使用navigation模式的关键属性,另外它是固定死的.你必需写.
+    <!--   android:name 需要使用navigation模式的关键属性
            app:defaultNavHost="true"  这是你实现物理按键(比如返回键),是按一下退出一个fragment
                 还是直接退出这个Activity的关键属性-->
     <fragment

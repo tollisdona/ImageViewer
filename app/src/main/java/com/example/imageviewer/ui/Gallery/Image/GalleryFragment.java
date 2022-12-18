@@ -23,39 +23,21 @@ import android.widget.Toast;
 import com.example.imageviewer.util.ImageAdapter;
 import com.example.imageviewer.R;
 import com.example.imageviewer.bean.Image;
+import com.github.chrisbanes.photoview.PhotoView;
 
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link GalleryFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
 public class GalleryFragment extends Fragment {
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-
-    // TODO: Rename and change types of parameters
     private String folder_name;
     private String folder_path;
     private List<Image> imageList = new ArrayList<>();
     public GalleryFragment() {
         // Required empty public constructor
     }
-
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment GalleryFragment.
-     */
-    // TODO: Rename and change types and number of parameters
     public static GalleryFragment newInstance(String param1, String param2) {
         GalleryFragment fragment = new GalleryFragment();
         return fragment;
@@ -131,7 +113,6 @@ public class GalleryFragment extends Fragment {
         @SuppressLint("Recycle") Cursor cursor = ctx.getContentResolver().query(MediaStore.Images.Media.EXTERNAL_CONTENT_URI,
                 null, selection, selectionArgs, null);
         Log.i("Tag","onCreate:Info   是否查询成功：  "+  cursor);
-
         while (cursor.moveToNext()) {
             //获取图片的名称
             String name = cursor.getString(cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DISPLAY_NAME));
@@ -179,8 +160,10 @@ public class GalleryFragment extends Fragment {
     private void bigImageLoader(Bitmap bitmap) {
         Context context = this.getActivity();
         final Dialog dialog = new Dialog(context);
-        ImageView image = new ImageView(context);
+        PhotoView image = new PhotoView(context);
         image.setImageBitmap(bitmap);
+        image.setScaleType(ImageView.ScaleType.FIT_CENTER);
+        image.setOnMatrixChangeListener(rect -> Log.e("Matrix", rect.toString()));
         dialog.setContentView(image);
         //将dialog周围的白块设置为透明
         dialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);

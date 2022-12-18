@@ -19,8 +19,9 @@
         android:layout_height="wrap_content"
         android:text="@string/btn_spider"
         android:onClick="click"/>
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/v_recycle"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="match_parent" />
 </LinearLayout>
