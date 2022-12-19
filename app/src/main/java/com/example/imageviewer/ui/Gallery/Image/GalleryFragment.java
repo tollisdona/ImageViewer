@@ -54,11 +54,6 @@ public class GalleryFragment extends Fragment {
         Log.i("Tag","onCreate:Info   "+imgpath);
         // TODO: 获取imglist
         imageList = getImages(folder_path);
-        Log.i("Tag","onCreate:Info   指定目录下的imglist"+imageList);
-        for (Image image :imageList) {
-            Log.i("Tag", "onCreate:Info   指定目录下的image" + image);
-        }
-
     }
 
     @Override

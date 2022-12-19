@@ -9,6 +9,15 @@
 
     <!-- TODO: Update blank fragment layout -->
     <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Tips:\n
+        向右滑动可打开侧边菜单\n
+        Gallery为实验一，Spider为实验二"
+        android:textSize="20dp"
+        android:layout_gravity="center"/>
+
+    <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom"

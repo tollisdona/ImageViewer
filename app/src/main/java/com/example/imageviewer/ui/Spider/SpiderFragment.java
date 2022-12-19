@@ -1,11 +1,13 @@
 package com.example.imageviewer.ui.Spider;
 
 import android.content.Context;
+import android.graphics.Bitmap;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Handler;
@@ -18,6 +20,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -30,38 +33,25 @@ import com.example.imageviewer.util.RVAdapter;
 import java.io.IOException;
 import java.util.List;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link SpiderFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
 public class SpiderFragment extends Fragment {
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-
     // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
     //全局变量存储imageList
     private List<Image> imageList;
     private RecyclerView recyclerView;
 
     private Handler handler = new Handler(Looper.getMainLooper()){
         public void handleMessage(@NonNull Message msg){
-            Log.i("TAG","handleMessage:"+"爬取结束");
             switch (msg.what) {
                 case 1:
                     imageList = (List<Image>) msg.obj;
                     //打印日志，检查图片信息是否正常
-                    Log.i("TAG", "handleMessage: " +imageList);
+                    Log.i("TAG", "返回的imglist: " +imageList);
                     if (imageList==null){
                         Log.i("TAG", "JsoupUtil:   未请求到图片");
                         Toast.makeText(getActivity(), "未请求到图片", Toast.LENGTH_SHORT).show();
                     }else{
-                        recyclerView.setLayoutManager(new GridLayoutManager(getActivity(),3));
+                        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
                         recyclerView.setAdapter(new RVAdapter(getActivity(),imageList));
                     }
                     break;
@@ -71,32 +61,10 @@ public class SpiderFragment extends Fragment {
         }
     };
 
-    public SpiderFragment() {
-        // Required empty public constructor
-    }
-
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment SpiderFragment.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static SpiderFragment newInstance(String param1, String param2) {
-        SpiderFragment fragment = new SpiderFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
     }
 
     @Override
@@ -112,6 +80,7 @@ public class SpiderFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 String url = String.valueOf(editText.getText());
+                //域名检验
                 if (TextUtils.isEmpty(url)) {
                     Toast.makeText(getContext(),"URL 不能为空~", Toast.LENGTH_SHORT).show();
                 }else if (!Patterns.WEB_URL.matcher(url.toString()).matches()) {
@@ -145,5 +114,7 @@ public class SpiderFragment extends Fragment {
             }
         }).start();
     }
+
+
 
 }

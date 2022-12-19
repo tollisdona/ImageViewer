@@ -59,7 +59,7 @@ public class RVAdapter extends RecyclerView.Adapter<RVAdapter.RVHolder> {
                 .load(imageList.get(position).getLocation())
                 .placeholder(R.drawable.ic_placeholder)
                 .error(R.drawable.ic_failed)
-                .override(500,500)
+//                .override(500,500)
                 .fitCenter()
                 .into(imageView);
     }

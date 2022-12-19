@@ -81,12 +81,12 @@ public class FolderFragment extends Fragment {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                //准备adapter的数据源
+                //准备Fragment
                 FragmentTransaction transaction = fragmentManager.beginTransaction();
-                String folder_name = adapter.getFolder(position).getName();
-                String folder_path = adapter.getFolder(position).getDir();
                 GalleryFragment galleryFragment=new GalleryFragment();
                 //传送数据
+                String folder_name = adapter.getFolder(position).getName();
+                String folder_path = adapter.getFolder(position).getDir();
                 Bundle bundle = new Bundle();
                 bundle.putString("name",folder_name);
                 bundle.putString("path",folder_path);
@@ -130,11 +130,9 @@ public class FolderFragment extends Fragment {
                 File parentFile = new File(path).getParentFile();
                 if (parentFile == null)
                     continue;
-
                 String dir = parentFile.getAbsolutePath();
                 if (mDirs.contains(dir))//如果已经添加过
                     continue;
-
                 mDirs.add(dir);//添加到保存目录的集合中
                 ImageFolders folderBean = new ImageFolders();
                 folderBean.setDir(dir);

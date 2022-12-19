@@ -19,7 +19,10 @@
         android:layout_height="wrap_content"
         android:text="@string/btn_spider"
         android:onClick="click"/>
-
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="返回图片："/>
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/v_recycle"
         android:layout_width="match_parent"

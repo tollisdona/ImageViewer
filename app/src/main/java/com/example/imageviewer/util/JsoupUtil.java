@@ -37,47 +37,12 @@ import javax.net.ssl.X509TrustManager;
 
 public class JsoupUtil {
 
-
-
-    /**
-     * 信任任何站点，实现https页面的正常访问
-     *
-     */
-
-    public static void trustEveryone() {
-        try {
-            HttpsURLConnection.setDefaultHostnameVerifier(new HostnameVerifier() {
-                public boolean verify(String hostname, SSLSession session) {
-                    return true;
-                }
-            });
-
-            SSLContext context = SSLContext.getInstance("TLS");
-            context.init(null, new X509TrustManager[] { new X509TrustManager() {
-                public void checkClientTrusted(X509Certificate[] chain, String authType) throws CertificateException {
-                }
-
-                public void checkServerTrusted(X509Certificate[] chain, String authType) throws CertificateException {
-                }
-
-                public X509Certificate[] getAcceptedIssuers() {
-                    return new X509Certificate[0];
-                }
-            } }, new SecureRandom());
-            HttpsURLConnection.setDefaultSSLSocketFactory(context.getSocketFactory());
-        } catch (Exception e) {
-            // e.printStackTrace();
-        }
-    }
-
     public List<Image> DownloadPic(String url) throws IOException {
-        trustEveryone();
         Log.i("TAG","DownloadPic    "+"进入jsoup");
         Document document = null;
         List<Image> imageList=new ArrayList<>();
         try {
             Log.i("TAG","onCreate    "+"url"+url);
-            url=url.substring(0,7).toLowerCase(Locale.ROOT)=="http://"?url:"http://"+url;
             document = Jsoup.connect(url)
                     .timeout(5000)
                     .userAgent("User-Agent : Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/46.0.2486.0 Safari/537.36Edge/13.10586")
